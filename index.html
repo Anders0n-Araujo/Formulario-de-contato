@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contato por Email</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        
+        <section class="contato">
+            <h2>Fale Conosco</h2>
+
+            <form action="#">
+                <div class="input-box">
+                    <div class="input-field field">
+                        <input type="text" placeholder="Nome Completo" id="nome" class="item" autocomplete="off">
+                        <div class="error-text">Nome deve ser Preenchido</div>
+                    </div>
+                    <div class="input-field field">
+                        <input type="text" placeholder="Email Completo" id="email" class="item" autocomplete="off">
+                        <div class="error-text">Email deve ser Preenchido</div>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <div class="input-field field">
+                        <input type="text" placeholder="Numero de Telefone" id="telefone" class="item" autocomplete="off">
+                        <div class="error-text">Telefone deve ser Preenchido</div>
+                    </div>
+                    <div class="input-field field">
+                        <input type="text" placeholder="Assunto" id="assunto" class="item" autocomplete="off">
+                        <div class="error-text">Assunto deve ser Preenchido</div>
+                    </div>
+                </div>
+
+                <div class="textarea-field field">
+                    <textarea name="" id="menssagem" cols="30" rows="10" placeholder="Esceva aqui sua Menssagem"
+                    class="item" autocomplete="off"></textarea>
+                    <div class="error-text">Menssagem deve ser Preenchida</div>
+                </div>
+
+                <button type="submit">Enviar Menssagem</button>
+            </form>
+        </section>
+
+
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
