@@ -6,21 +6,96 @@ const assunto = document.getElementById("assunto");
 const menssagem = document.getElementById("menssagem");
 
 function sendEmail(){
+    const bodyMessage = `Full Name: ${fullName.value}<br> Email: ${email.value}<br> 
+    Telefone: ${telefone.value}<br> Menssagem: ${menssagem.value}<br>`
+
     Email.send({
         Host : "smtp.elasticemail.com",
         Username : "anderson.dearaujo.sousa@gmail.com",
         Password : "72C6D333E64BF9FE3FB7CB2BAB01A774AED5",
         To : 'anderson.dearaujo.sousa@gmail.com',
         From : "anderson.dearaujo.sousa@gmail.com",
-        Subject : "This is the subject",
-        Body : "And this is the body"
+        Subject : assunto.value,
+        Body : bodyMessage
     }).then(
-      message => alert(message)
+      message => {
+        if(message == "OK"){
+          Swal.fire({
+            title: "Sucesso !",
+            text: "A menssagem foi enviada com sucesso",
+            icon: "success"
+          });
+        }
+      }
     );
 }
 
-form.addEventListener("submit", (e)=>{
-  e.preventDefault();
+function checkEntrada(){
+  const items = document.querySelectorAll(".item");
 
-  sendEmail()
+
+  for(const item of items){
+    if(item.value == ""){
+      item.classList.add('error');
+      item.parentElement.classList.add('error');
+    }
+
+    if(items[1].value != ""){
+      checkEmail();
+    }
+
+    items[1].addEventListener("keyup", () => {
+      checkEmail();
+    });
+
+    item.addEventListener("keyup", () => {
+      if(item.value != ""){
+        item.classList.remove('error');
+        item.parentElement.classList.remove('error'); 
+      }
+      else{
+        item.classList.add('error');
+        item.parentElement.classList.add('error');
+      }
+    });
+    
+  }
+}
+
+function checkEmail(){
+  const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
+  const errorTxtEmail = document.querySelector(".error-text.email");
+
+  if(!email.value.match(emailRegex)){
+    email.classList.add('error');
+    email.parentElement.classList.add('error');
+
+    if(email.value != ""){
+      errorTxtEmail.innerHTML = "Digite um email válido";
+    }
+    else{
+      errorTxtEmail.innerHTML = "Email deve ser Preenchido";
+    }
+  }
+  else{
+    email.classList.remove('error');
+    email.parentElement.classList.remove('error');
+  }
+}
+
+form.addEventListener("submit", (e) => { 
+  e.preventDefault();
+  checkEntrada();
+
+  if(!fullName.classList.contains("error") && !email.classList.contains("error") && 
+    !telefone.classList.contains("error") && !assunto.classList.contains("error") && 
+    !menssagem.classList.contains("error")){
+      console.log("OK");
+      sendEmail()
+
+      form.reset();
+      return false;
+    }
+
+  
 });
