@@ -10,9 +10,7 @@ function sendEmail(){
     Telefone: ${telefone.value}<br> Menssagem: ${menssagem.value}<br>`
 
     Email.send({
-        Host : "smtp.elasticemail.com",
-        Username : "anderson.dearaujo.sousa@gmail.com",
-        Password : "72C6D333E64BF9FE3FB7CB2BAB01A774AED5",
+        SecureToken : "3483c7d2-2d6c-4939-a99d-341204add09b",
         To : 'anderson.dearaujo.sousa@gmail.com',
         From : "anderson.dearaujo.sousa@gmail.com",
         Subject : assunto.value,
